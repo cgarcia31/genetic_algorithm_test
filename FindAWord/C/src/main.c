@@ -41,13 +41,21 @@ int main(){
     mf[3] = insertion_mutate;
     mf[4] = deletion_mutate;
     const char * word = "Je vais bien, tu vas bien !";
-    Population p = create_population(1024, 2, 50);
+
+    int max_generations = 200000;
+
+    int population_size = 1024;
+    int min_individual_size = 2;
+    int max_individual_size = 50;
+    Population p = create_population(population_size, min_individual_size, max_individual_size);
+
     float mutation_rate = 1/strlen(word);
+    float selection_rate = 0.8f;    float mutation_rate = 1/strlen(word);
     float selection_rate = 0.8f;
     int rand_fitness, rand_mutation, rand_selection, rand_pairing, rand_crossover;
     srand(time(NULL));
     int i = 0;
-    for (i = 0; i < 200000; i++){
+    for (i = 0; i < max_generations; i++){
         rand_fitness = rand()%9;
         rand_selection = rand()%4;
         rand_mutation = rand()%5;
